@@ -1,0 +1,1 @@
+ffmpeg -i output/image-%00d.png -vf format=yuv420p woi.mp4
