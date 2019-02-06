@@ -15,9 +15,9 @@ def main():
   clear_output_dir()
 
   # Create model
-  model = Arty()
+  model = Arty(device)
   controller = Controller(model)
-  controller.train()
+  controller.train(device)
 
 if __name__ == '__main__':
   main()

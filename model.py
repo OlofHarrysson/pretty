@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 class Arty(nn.Module):
-  def __init__(self, act=nn.Tanh, num_neurons=16, num_layers=9):
+  def __init__(self, device, act=nn.Tanh, num_neurons=16, num_layers=9):
     super(Arty, self).__init__()
 
     layers = [nn.Linear(2, num_neurons, bias=True), act()]
@@ -11,9 +11,12 @@ class Arty(nn.Module):
     layers += [nn.Linear(num_neurons, 3, bias=False), nn.Sigmoid()]
     self.layers = nn.Sequential(*layers)
 
+    self.device = device
+    self = self.to(device)
     # self.init_w()
           
   def forward(self, x):
+    x = x.to(self.device)
     return self.layers(x)
 
   def init_w(self):
